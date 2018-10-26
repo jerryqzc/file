@@ -1,0 +1,221 @@
+* {
+    margin: 0 auto;
+	padding: 0;
+    text-decoration: none;
+    font-family: "microsoft yahei";
+	}
+	
+/*上半部分*/
+.big_box1 {
+	width:100%;
+	min-width:1100px;
+	height:600px;
+	background: url(../images/g_banner_background.png) no-repeat center;
+	background-size: cover;
+}
+
+.bb1_header {
+	width: 1100px;
+	height: 100px;
+}
+
+.bb1_header_pighead {
+	height: 60px;
+	width: 60px;
+	margin: 20px 20px 20px 30px;
+	background: url(../images/g_logo.png) no-repeat center;
+	border-radius: 12px;
+	overflow: hidden;
+	float: left;
+}
+
+.bb1_header_words {
+	line-height: 100px;
+	font-size: 33px;
+	color: white;
+	font-family: yueyuan;
+}
+
+.bb1_header_nav_device{
+	float: right;
+	padding: 0;
+	margin: 23px 0px;
+}
+.bb1_header_nav_device_item{
+	float: left;
+	height: 54px;
+	line-height: 54px;
+	vertical-align: middle;
+	position: relative;
+	list-style: none;
+	margin-right: 30px;
+	padding: 0px 5px;
+	color: #ccc;	
+}
+.bb1_header_nav_device_item i{
+	font-size: 2em;
+	line-height: 54px;
+	margin-right: 10px;
+}
+.bb1_header_nav_device_item:after{
+    display: block;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+
+.bb1_header_nav_device_item:hover{
+	color: #FB6C6D;
+}
+
+.checked{
+	color:#FB6C6D;
+	border: 1px soild #FB6C6D;
+}
+
+.bb1_nav{
+	width: 1100px;
+	height: 500px;
+	position: relative;
+}
+
+.bb1_nav_show_page{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.bb1_nav_info{
+	width: 550px;
+	height: 100%;
+	margin: 0px;
+	-webkit-box-sizing:border-box;
+	display: inline-block;
+	padding: 80px 0px 0px 60px;
+}
+
+.mobile_div{
+	position: relative;
+}
+
+.bb1_nav_info_one{
+	color: white;
+	font-size: 33px;
+	position: relative;	
+}
+
+.bb1_nav_info_one_name{
+	font-size: 53px;
+	padding-right: 15px;
+	border-bottom: #fb6c6d solid 1px;
+	display: inline-block;
+}
+
+.bb1_nav_info_one_block{
+	color: white;
+	background: #fb6c6d;
+	display: inline-block;
+	border-radius: 5px;
+	height: 30px;
+	line-height: 30px;
+	width: 105px;
+	text-align: center;
+	font-size: 20px;
+	margin-left: 25px;
+}
+
+.bb1_nav_info_two{
+	color: white;
+	font-size: 33px;
+	line-height: 60px;
+}
+
+.bb1_nav_info_three{
+	height: 120px;
+	width: 435px;
+	margin: 20px 0;
+}
+
+.bb1_nav_info_three_download{
+	background: #FB6C6D;
+	border-radius: 10px;
+	display: block;
+	color: white;
+	width: 285px;
+	height: 100%;
+	line-height: 120px;
+	font-size: 33px;
+	text-align: center;
+	float: left;
+}
+
+.bb1_nav_info_four_size{
+	color: white;
+	font-size: 17px;
+	margin-right: 40px;
+	
+}
+
+.bb1_nav_info_four_time{
+	color: white;
+	font-size: 17px;
+}
+
+.bb1_nav_info_three_link{
+	height: 100%;
+	border-radius:5px;
+	float: right;
+}
+
+.bb1_device-preview{
+	width: 315px;
+	height: 478px;
+	position: absolute;
+	right: 82px;
+	bottom: 0px;
+	background: url(../images/g_device_preview_android.png) no-repeat top center;
+}
+
+/*下半部分*/
+.big_box2 {
+	width: 1040px;
+	height: 410px;
+	padding: 0 30px;
+	text-align: center;
+}
+
+.bb2_boxson {
+	display: inline-block;
+	height: 100%;
+	width:left;
+}
+
+.bb2_boxson_img {
+	width: 150px;
+	height: 150px;
+	margin: 80px 50px 0px;
+	
+}
+
+.bb2_boxson_words {
+	font-size: 18px;
+	text-align: center;
+	margin-top: 20px;
+	color: #373737;
+}
+
+.bb2_boxson_words:last-child {
+	margin-top: 0px;
+}
+
+/*footer*/
+.footer {
+	width: 100%;
+	min-width: 900px;
+	background: #efefef;
+	text-align: center;
+	height: 70px;
+	line-height: 70px;
+	font-size: 13px;
+	color: #989898;
+}
