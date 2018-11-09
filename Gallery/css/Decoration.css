@@ -1,0 +1,90 @@
+* {
+            margin: auto;
+            padding: 0;
+            text-decoration: none;
+        }
+        
+        body {
+            padding: 20px;
+        }
+        
+        #container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            border: 0px;
+            overflow: hidden;
+        }
+        
+        #list {
+            position: absolute;
+            z-index: 1;
+            width: 4200px;
+            height: 400px;
+        }
+        
+        #list img {
+            float: left;
+            width: 600px;
+            height: 400px;
+        }
+        
+        #buttons {
+            position: absolute;
+            left: 250px;
+            bottom: 20px;
+            z-index: 2;
+            /*z-index 属性设置元素的堆叠顺序*/
+            height: 10px;
+            width: 100px;
+        }
+        
+        #buttons span {
+            float: left;
+            margin-right: 5px;
+            width: 5px;
+            height: 5px;
+            border: 0px;
+            border-radius: 50%;
+            background: gainsboro;
+            cursor: pointer;
+        }
+        
+        #buttons .on {
+            background: purple;
+        }
+        
+        .arrow {
+            position: absolute;
+            top: 180px;
+            z-index: 2;
+            display: none;
+            width: 40px;
+            height: 40px;
+            font-size: 36px;
+            font-weight: bold;
+            line-height: 39px;
+            text-align: center;
+            color: grey;
+            background-color: transparent;
+            /*改成透明更好看*/
+            cursor: pointer;
+            /*cursor 属性规定要显示的光标的类型（形状）*/
+        }
+        
+        .arrow:hover {
+            background-color: RGBA(0, 0, 0, .0);
+            /*css3 feature red green blue value ranges from 0-255 最后一个即透明度alpha ranges from 0-1 closer to 1,lower transparency*/
+        }
+        
+        #container:hover .arrow {
+            display: block;
+        }
+        
+        #prev {
+            left: 20px;
+        }
+        
+        #next {
+            right: 20px;
+        }
