@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JS计算器</title>
+		<link rel="stylesheet" type="text/css" href="css/cal.css"/>
+		<script>
+    window.onload = function () {
+        var plugs = [];
+        var button_content = document.getElementsByClassName("btn");
+        var txt = document.getElementsByClassName("txt")[0];
+        var ac_del = document.getElementsByClassName("btn_c");
+        for (var i = 0; i < ac_del.length; i++) {
+            ac_del[i].onclick = function () {
+                if (this.value == "AC") {
+                    plugs = [];
+                    txt.value = "";
+                }
+                else {
+                    txt.value = txt.value.substr(0, txt.value.length - 1);
+                }
+            }
+        }
+        for (var i = 0; i < button_content.length; i++) {
+            button_content[i].onclick = function () {
+                if (txt.value == "" && this.value == ".") {
+                    txt.value = "0.";
+                }
+                else {
+                    if (!isNaN(this.value) || this.value == "."||this.value == "*100"||this.value == "*1000") {
+                        if (txt.value.indexOf(".") != -1) {
+                            if (this.value != ".") {
+                                txt.value += this.value;
+                            }
+                        }
+                        else {
+                            txt.value += this.value;
+                        }
+                    }
+                    else {
+                        if (this.value != "=") {
+                            plugs[plugs.length] = txt.value;
+                            plugs[plugs.length] = this.value;
+                            txt.value = "";
+                            if (this.value == "1/X"){
+                            plugs[plugs.length] = txt.value;
+                            txt.value = eval("1/plugs[0]");
+                            plugs = [];
+                            }
+                            if (this.value == "√"){
+                            plugs[plugs.length] = txt.value;
+                            txt.value = Math.sqrt(plugs[0]);
+                            plugs = [];
+                            }
+                        }
+                        else {
+                            plugs[plugs.length] = txt.value;
+                            txt.value = eval(plugs.join(""));
+                            plugs = [];
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>
+	</head>
+	<body>
+		<div class="max">
+			<div class="horizontal_1">
+				<div class="h1_v1_1">
+					<input class="btn" type="button" value="Off" style="width: 100%;height: 100%;font-size: 2rem;color: palevioletred;"/>
+				</div>
+				<div class="h1_v1_2">
+					<div class="h1_v1_2_1">
+						<div class="h1_v1_2_1_s1">
+							<input type="txt" class="txt" disabled/>
+						</div>
+						<div class="h1_v1_2_1_s2">
+							<input class="btn" type="button" value="On" style="width: 100%;height: 100%;font-size: 2rem;color: palegreen;"/>
+						</div>
+					</div>
+					<div class="h1_v1_2_2">
+						<input class="btn" type="button" value="√" style="width: 100%;height: 46.5px;font-size: 2rem;"/>
+					</div>
+				</div>
+			</div>
+			<div class="horizontal_2">
+				<div class="h2_v2_1">
+					<input class="btn" type="button" value="+" style="width: 40%;height: 140px;font-size: 4rem;font-weight: 300;margin-top: 4px;"/>
+					<input class="btn" type="button" value="-" style="width: 40%;height: 140px;font-size: 4rem;font-weight: 300;margin-top: 4px;"/>
+					<input class="btn" type="button" value="*" style="width: 40%;height: 140px;font-size: 4rem;font-weight: 300;margin-top: 4px;"/>
+					<input class="btn" type="button" value="/" style="width: 40%;height: 140px;font-size: 4rem;font-weight: 300;margin-top: 4px;"/>
+					<input class="btn" type="button" value="1/X" style="width: 40%;height: 140px;font-size: 4rem;font-weight: 300;margin-top: 4px;"/>
+					<input class="btn" type="button" value="." style="width: 40%;height: 140px;font-size: 4rem;font-weight: 300;margin-top: 4px;"/>
+				</div>
+				<div class="h2_v2_2">
+					<div class="ho1">
+						<div class="ve1">
+							<div class="hh1">
+								<input class="btn" type="button" value="1" style="margin-top: 4px;"/>
+								<input class="btn" type="button" value="2" style="margin-top: 4px;"/>
+								<input class="btn" type="button" value="3" style="margin-top: 4px;"/>
+								<input class="btn" type="button" value="4" style="margin-top: 4px;"/>
+								<input class="btn" type="button" value="5" style="margin-top: 4px;"/>
+								<input class="btn" type="button" value="6" style="margin-top: 4px;"/>
+								<input class="btn" type="button" value="7" style="margin-top: 4px;"/>
+								<input class="btn" type="button" value="8" style="margin-top: 4px;"/>
+								<input class="btn" type="button" value="9" style="margin-top: 4px;"/>
+							</div>
+							<div class="hh2">
+								<input class="btn" type="button" value="0" style="margin-top: 18px;width: 80%;"/>
+							</div>
+							<div class="hh3">
+								<input class="btn_c" type="button" value="AC"/>
+								<input class="btn_c" type="button" value="DEL"/>
+							</div>
+						</div>
+						<div class="ve2">
+							<input class="btn" type="button" value="=" style="width: 100%;height: 400px;font-size: 8rem;font-weight: lighter;"/>
+						</div>
+					</div>
+					<div class="ho2">
+						<input class="btn" type="button" value="*100" style="width: 100%;height: 25px;font-size: 1rem;"/>
+					</div>
+				</div>
+			</div>
+			<div class="horizontal_3">
+				<input class="btn" type="button" value="*1000" style="width: 100%;height: 35px;font-size: 1rem;"/>
+			</div>
+		</div>
+	</body>
+</html>
