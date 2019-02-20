@@ -26,7 +26,7 @@ body{
 	margin-top: -410px;
 }
 .mobile{
-	width: 50%;
+	width: 60%;
 	height: 900px;
 	float: left;
 	position: absolute;
@@ -65,7 +65,7 @@ body{
 	width: 30%;
 	height: 30px;
 	color: whitesmoke;
-	font-size: 0.5rem;
+	font-size: 0.5vw;
 	float: right;
 	text-align: right;
 	line-height: 30px;
@@ -76,7 +76,7 @@ body{
 	height: 30px;
 	background-color: #262a34;
 	color: white;
-	font-size: 0.5rem;
+	font-size: 0.5vw;
 	float: right;
 	text-align: center;
 	line-height: 30px;
@@ -119,7 +119,7 @@ body{
 .sc1,.sc2{
 	width: 100%;
 	height: 25%;
-	font-size: 15px;
+	font-size: 1vw;
 	color: white;
 }
 .pic{
@@ -185,14 +185,14 @@ body{
 .th_hal{
 	width: 100%;
 	height: 50px;
-	font-size: 43px;
+	font-size: 2vw;
 	color: white;
 	float: left;
 }
 .th_ha1{
 	width: 100%;
 	height: 30px;
-	font-size: 15px;
+	font-size: 1vw;
 	color: #2c3f46;
 	margin-top: 5%;
 	float: left;
@@ -200,7 +200,7 @@ body{
 .th_ha2{
 	width: 100%;
 	height: 30px;
-	font-size: 15px;
+	font-size: 1vw;
 	color: #2c3f46;
 }
 .ve1{
@@ -246,7 +246,7 @@ body{
 .sp2{
 	width: 80%;
 	height: 15%;
-	font-size: 10px;
+	font-size: 0.8vw;
 }
 
 
@@ -264,9 +264,9 @@ body{
 	width: 100%;
 	height: 25px;
 	color: white;
-	font-size: 15px;
+	font-size: 1vw;
 	text-align: center;
-	font-size: lighter;
+	font-weight: lighter;
 }
 
 
