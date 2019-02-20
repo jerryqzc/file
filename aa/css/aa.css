@@ -270,7 +270,7 @@ width:expression_r(document.body.clientWidth < 1170 ? "1170px": "auto" );
 	border-radius: 50px;
 	width: 23%;
 	height: 50px;
-	font-size: 1rem;
+	font-size: 1vw;
 	font-family: Dengl;
 	color: #929292;
 	background-color: #262626;
@@ -290,7 +290,7 @@ width:expression_r(document.body.clientWidth < 1170 ? "1170px": "auto" );
 .questions{
 	width: 100%;
 	height: 9%;
-	font-size: 3rem;
+	font-size: 3vw;
 	font-family: Dengl;
 	text-align: center;
 	color: #ffffff;
@@ -321,15 +321,15 @@ width:expression_r(document.body.clientWidth < 1170 ? "1170px": "auto" );
 	font-family: Dengl;
 }
 .ans_scr_1,.ans_scr_2{
-	font-size: 1.5rem;
+	font-size: 1.5vw;
 	color: #ffffff;
 }
 .ans_scr_3,.ans_scr_4{
-	font-size: 1rem;
+	font-size: 1vw;
 	color: #999999;
 }
 .ans_scr_5{
-	font-size: 0.5rem;
+	font-size: 0.5vw;
 	color: #0066cc;
 }
 .ans_scr_1{
@@ -355,7 +355,7 @@ width:expression_r(document.body.clientWidth < 1170 ? "1170px": "auto" );
 .fourth_ur_plans{
 	font-family: Dengl;
 	text-align: center;
-	font-size: 3rem;
+	font-size: 3vw;
 	color: #333333;
 	margin-top: 8%;
 }
