@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    		<meta charset="UTF-8" content="text/html" http-equiv="content-type">
+   		<title>IKEA/用心打造更美好的生活/</title>
+		<link rel="shortcut icon" href="img/favicon.ico"/>
+ 	    <link rel="bookmark" href="img/favicon.ico"/>
+   		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+    	 	<style type="text/css">
+
+       		*{margin: 0;padding: 0;}
+       		#bg{background: #234062;width: 100%;height: 4vw;position: relative;z-index: 3;}
+         	nav{height: 4vw;width: 100%;margin: 0 auto;}
+        		nav ul li{list-style-type:none;float: left}
+         	nav ul li a{ text-decoration: none;display: block;width: 100px;line-height: 4vw;text-align: left;color:white;font-fimily:arial;font-weight: lighter;}
+         	nav ul li ul li{float: none;}
+         	nav ul li ul li a{color:black;background-color: #f6d33c;margin-left: 1px;}
+         	nav ul li ul{display: none;}
+         	nav ul li:hover ul{display: block;}
+         	
+         	*{ margin:0; padding:0;}
+
+			ul,li{ list-style:none;}
+
+			a{ text-decoration: none;}
+
+			.nav{ width: 100px; border-bottom: none;}
+
+			.nav ul li{ background: #f3f3f3; text-align:center; height: 2vw; line-height: 2vw; position:relative; font-size: 1vw;}
+
+			.nav ul li a{ color:#333;}
+
+			.nav ul li a:hover{ color:#f6d752;}
+			
+			.nav ul li:hover ul { display:block}
+			
+			.nav ul li ul {position: absolute;left: 100px;top: 0px;width: 100px; display:none;list-style: none;}
+			
+			#mi_ban{
+    position: relative;
+    width: 1000px;
+    height: 550px;
+    /*border: 3px solid #333;*/
+    overflow: hidden;
+}
+#list{
+    position: absolute;
+    z-index: 1;
+    width: 6000px;
+    height: 550px;
+}
+#list img{
+    float: left;
+    width: 1000px;
+    height: 550px;
+}
+#btttns{
+    position: absolute;
+    left: 450px;
+    bottom: 10px;
+    z-index: 2;
+    height: 20px;
+    width: 100px;
+}
+#btttns span{
+    float: left;
+    margin-right: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: grey;
+    cursor: pointer;
+}
+#btttns .on{
+    background: #f9e075;
+}
+.arrow {
+    position: absolute;
+    top: 260px;
+    z-index: 2;
+    display: none;
+    width: 40px;
+    height: 40px;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 39px;
+    text-align: center;
+    color: #fff;
+    background-color: RGBA(0, 0, 0, .3);
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px 1px grey;
+    font-weight: lighter;
+}
+.arrow:hover {
+    background-color: RGBA(0, 0, 0, .7);
+}
+#mi_ban:hover .arrow {
+    display: block;
+}
+#prev {
+    left: 20px;
+}
+#next {
+    right: 20px;
+}
+     	</style>
+ 		<script type="text/javascript">
+			window.onload = function() {
+    			var list = document.getElementById('list');
+    			var prev = document.getElementById('prev');
+    			var next = document.getElementById('next');
+ 
+    			//手动切换箭头效果
+    			function animate(offset) {
+        		//获取的是style.left，是相对左边获取距离，所以第一张图后style.left都为负值，
+        		//且style.left获取的是字符串，需要用parseInt()取整转化为数字。
+        		var newLeft = parseInt(list.style.left) + offset;
+        		list.style.left = newLeft + 'px';
+        		//判断偏移量
+        		if(newLeft<-4000){
+            		list.style.left = -1000 + 'px';
+        		}
+        		if(newLeft>-1000){
+            		list.style.left = -4000 + 'px';
+        		}
+    			}
+    			prev.onclick = function() {
+        			animate(1000);
+    			}
+    			next.onclick = function() {
+        			animate(-1000);
+    			}
+ 
+    			//setInterval()定时器
+    			var timer;
+    			function play() {
+        		timer = setInterval(function () {
+            		next.onclick();//将轮播图换成向右切换图片
+            		//prev.onclick();//将轮播图换成向左切换图片
+        		}, 2000)//切换时间
+    			}
+    			play();
+ 
+    //获取整个轮播图区域
+    var mi_ban = document.getElementById('mi_ban');
+    function stop() {
+        clearInterval(timer);
+    }
+    mi_ban.onmouseover = stop;
+    mi_ban.onmouseout = play;
+ 
+    //小圆点
+    var btttns = document.getElementById('btttns').getElementsByTagName('span');
+    var index = 1;
+    function buttonsShow() {
+        //这里需要清除之前的样式
+        for (var i = 0; i < btttns.length; i++) {
+            if (btttns[i].className == 'on') {
+                btttns[i].className = '';
+            }
+        }
+        //数组从0开始，故index需要-1
+        btttns[index - 1].className = 'on';
+    }
+    prev.onclick = function() {
+        index -= 1;
+        if (index < 1) {
+            index = 4;
+        }
+        buttonsShow();
+        animate(1000);
+    }
+    next.onclick = function() {
+        //由于上边定时器的作用，index会一直递增下去，我们只有5个小圆点，所以需要做出判断
+        index += 1;
+        if (index > 4) {
+            index = 1;
+        }
+        buttonsShow();
+        animate(-1000);
+    }
+ 
+    for (var i = 0; i < btttns.length; i++) {
+        // 这里使用的是立即执行函数，
+        (function(i) {
+            btttns[i].onclick = function() {
+                console.log(i);
+                /* 偏移量获取：这里获得鼠标移动到小圆点的位置，用this把index绑定到对象buttons[i]上，去谷歌this的用法  */
+                /* 由于这里的index是自定义属性，需要用到getAttribute()这个DOM2级方法，去获取自定义index的属性*/
+                var clickIndex = parseInt(this.getAttribute('index'));
+                var offset = 1000 * (index - clickIndex);
+                animate(offset);//存放鼠标点击后的位置，用于小圆点的正常显示
+                index = clickIndex;
+                buttonsShow();
+            }
+        })(i)
+    }
+}
+ 		</script>
+	</head>
+ 	<body>
+ 		<div class="in_max">
+			<div class="header">
+ 			<div class="he_img">
+					<a href="welcome.html"><img src="img/logo.png" style="width: 100%;height: auto;"/></a>
+			</div>
+ 				<div class="he_wel">
+					<a href="welcome.html" style="text-decoration: none;color: white;">欢迎来到宜家！</a>
+				</div>
+ 				<div id="bg">
+ 				<nav>
+     	<ul>
+         	<li><a href="#">客户服务</a>
+         	<ul>
+             	<li><a href="welcome.html">&nbsp;常见问题</a></li>
+             	<li><a href="#">&nbsp;退换货政策</a></li>
+             	<li><a href="#">&nbsp;联系我们</a></li>
+         	</ul>
+         	</li>
+         	<li><a href="#">关于宜家</a>
+             	<ul>
+                 	<li><a href="#">&nbsp;宜家理念</a></li>
+                 	<li><a href="#">&nbsp;工作申请</a></li>
+                		<li><a href="about.html">&nbsp;关于我们</a></li>
+             	</ul>
+         	</li>
+         	<li><a href="#">我的</a>
+             	<ul>
+                 	<li><a href="#">&nbsp;登陆</a></li>
+                 	<li><a href="#">&nbsp;购物车🛒</a></li>
+                 	<li><a href="#">&nbsp;订单</a></li>
+             	</ul>
+         	</li>
+     	</ul>
+ 		</nav>
+ 				</div>
+ 			</div>
+ 			
+ 			<div class="body">
+ 				<div class="ileft" style="text-align: center;">
+ 					
+ 					<div class="nav" style="margin-left: 0.5vw;margin-top: 10vw;">
+					<div style="width: 8vw;height: 2.2vw;background-color: #dddddd;margin-left: 1.8vw;border-radius: 50px;margin-bottom: 1vw;background-color: white;">
+ 						<img src="img/search.png" height="60%" style="float: left;margin-left: 0.4vw;margin-top: 0.4vw;"/>
+ 					</div>
+     	 <ul>
+
+          <li><a href="#">卧室</a>
+
+                <ul>
+
+                       <li><a href="#">床具</a></li>
+
+                       <li><a href="#">灯具</a></li>
+
+                       <li><a href="#">床上用品</a></li>
+
+                       <li><a href="#">衣柜收纳</a></li>
+
+                </ul>
+
+          </li>
+
+          <li><a href="#">浴室</a>
+
+                <ul>
+
+                       <li><a href="#">洗脸池</a></li>
+
+                       <li><a href="#">照明</a></li>
+
+                       <li><a href="#">卫生间配件</a></li>
+
+                </ul>
+
+          </li>
+
+          <li><a href="#">客厅</a>
+
+                <ul>
+
+                       <li><a href="#">沙发</a></li>
+
+                       <li><a href="#">茶几</a></li>
+
+                       <li><a href="#">抱枕</a></li>
+
+                       <li><a href="#">电视柜</a></li>
+                       
+                       <li><a href="#">地毯</a></li>
+
+                </ul>
+
+          </li>
+
+          <li><a href="#">阳台</a>
+          		<ul>
+
+                       <li><a href="#">桌椅</a></li>
+
+                       <li><a href="#">花架</a></li>
+
+                       <li><a href="#">晾衣</a></li>
+
+                </ul>
+		  </li>
+          <li><a href="#">餐厨</a>
+          		<ul>
+
+                       <li><a href="#">餐具</a></li>
+
+                       <li><a href="#">餐桌</a></li>
+
+                       <li><a href="#">厨房用品</a></li>
+
+                </ul>
+          </li>
+		  <li><a href="#">书房</a>
+          		<ul>
+
+                       <li><a href="#">文具</a></li>
+
+                       <li><a href="#">书架</a></li>
+
+                       <li><a href="#">置物</a></li>
+
+                       <li><a href="#">桌椅</a></li>
+
+                </ul>
+          </li>
+          <li><a href="#">儿童房</a>
+          		<ul>
+
+                       <li><a href="#">小姐姐</a></li>
+
+                       <li><a href="#">没给</a></li>
+
+                       <li><a href="#">分类</a></li>
+
+                </ul>
+          </li>
+          <li><a href="#">收纳</a>
+          		<ul>
+
+                       <li><a href="#">这个</a></li>
+
+                       <li><a href="#">也</a></li>
+
+                       <li><a href="#">没</a></li>
+
+                       <li><a href="#">给</a></li>
+
+                </ul>
+          </li>
+          <li><a href="#">装饰</a>
+          		<ul>
+
+                       <li><a href="#">假花</a></li>
+
+                       <li><a href="#">墙画</a></li>
+
+                       <li><a href="#">墙贴</a></li>
+
+                       <li><a href="#">花瓶</a></li>
+
+					   <li><a href="#">地毯</a></li>
+					   
+					   <li><a href="#">工艺摆件</a></li>
+                </ul>
+          </li>
+     </ul>
+
+</div>
+ 				</div>
+ 				<div class="imiddle" style="text-align: center;">
+ 					<div class="mi_title">
+ 						<div class="mi_title1">
+ 							<a href="#" class="wa_se">
+ 							IKEA
+ 							</a>
+ 						</div>
+ 						<div class="mi_title2">
+ 							<a href="#" class="wa_se">
+ 							/用心打造更美好的日常生活/
+ 							</a>
+ 						</div>
+ 					</div>
+ 					<div id="mi_ban" style="margin: 0 auto;">
+            				<div id="list" style="left: -1000px;">
+                				<img src="#" alt="1"/>
+                				<img src="img/dishes.png" alt="1"/>
+                				<img src="img/furni.png" alt="2"/>
+                				<img src="img/bedsh.png" alt="3"/>
+                				<img src="img/muji.jpg" alt="4"/>
+                				<img src="#" alt="3"/>
+            				</div>
+            				<div id="btttns">
+                				<span index="1" class="on"></span>
+                				<span index="2"></span>
+                				<span index="3"></span>
+                				<span index="4"></span>
+            				</div>
+            				<a href="javascript:;" id="prev" class="arrow">&lt;</a>
+            				<a href="javascript:;" id="next" class="arrow">&gt;</a>
+       				</div>
+ 					<div class="mi_cat">
+ 						<div class="mi_cat1">
+ 							<div class="mi_sub_cat1">
+ 								<div class="subb">
+ 									<div style="width: 10%;height: 3vw;float: left;">
+ 										
+ 									</div>
+ 									<a href="#" class="wa_se">
+ 									热门精选/
+ 									</a>
+ 									<div class="more">
+ 										<a href="#" class="wa_se">
+ 											更多 >>
+ 										</a>
+ 									</div>
+ 								</div>
+ 								
+ 								<div class="subs">
+ 									<div style="width: 35%;height: 2vw;float: left;">
+ 										
+ 									</div>
+ 									<a href="#" class="wa_se">
+ 									/我们优选数十万用户的选择，希望您也会喜欢/
+ 									</a>
+ 									<div class="subs_ri" style="border-top: 2px solid #898989;width: 35%;height: 2vw;float: right;">
+ 										
+ 									</div>
+ 								</div>
+ 							</div>
+ 							<div class="mi_sub_cat2">
+ 								<div class="items">
+ 									<div class="haaa">
+ 										
+ 											<img src="img/n1.png" width="85%" height="auto"/>
+ 										<div class="bmhaaa">
+ 											<div class="soldout" style="width: 5vw;height: 5vw;border-radius: 50%;position: absolute;margin-top: -14vw;margin-left: 18vw;border: 4px solid #f8e388;">
+ 												<div class="sold" style="width: 5vw;height: 5vw;border-radius: 50%;background-color: #fef7a1;font-size: 2vw;color: black;">
+ 													售罄
+ 												</div>
+ 											</div>
+ 											¥ 14.9
+ 										</div>
+ 									</div>
+ 									
+ 									<div class="intro">
+ 										<a href="#" class="wa_se">
+ 										IKEA| 加尔可折叠洗衣袋
+ 										</a>
+ 									</div>
+ 								</div>
+ 								<div class="items" style="margin-left: 2%;margin-right: 2%;">
+ 									<div class="haaa">
+ 											<img src="img/n2.png" width="85%" height="auto"/>
+ 										<div class="bmhaaa">
+ 											¥ 299
+ 										</div>
+ 									</div>
+ 									<div class="intro">
+ 										<a href="#" class="wa_se">
+ 										IKEA| 佩洛单人扶手椅
+ 										</a>
+ 									</div>
+ 								</div>
+ 								<div class="items">
+ 									<div class="haaa">
+ 											<img src="img/n3.png" width="85%" height="auto"/>
+ 										<div class="bmhaaa">
+ 											¥ 99
+ 										</div>
+ 									</div>
+ 									<div class="intro">
+ 										<a href="#" class="wa_se">
+ 										IKEA| 安迪洛儿童餐椅
+ 										</a>
+ 									</div>
+ 								</div>
+ 							</div>
+ 						</div>
+ 						<div class="mi_cat1">
+ 							<div class="mi_sub_cat1">
+ 								<div class="subb">
+ 									<div style="width: 10%;height: 3vw;float: left;">
+ 										
+ 									</div>
+ 									<a href="#" class="wa_se">
+ 									9.9好物/
+ 									</a>
+ 									<div class="more">
+ 										<a href="#" class="wa_se">
+ 											更多 >>
+ 										</a>
+ 									</div>
+ 								</div>
+ 								<div class="subs">
+ 									<div style="width: 35%;height: 2vw;float: right;">
+ 										
+ 									</div>
+ 									<a href="#" class="wa_se">
+ 									/小花费为您带来大改变/
+ 									</a>
+ 									<div class="subs_ri" style="border-top: 2px solid #898989;width: 35%;height: 2vw;float: left;">
+ 										
+ 									</div>
+ 								</div>
+ 							</div>
+ 							<div class="mi_sub_cat2" style="margin-top: 1vw;">
+ 								<div class="items">
+ 									<div class="haaa">
+ 											<img src="img/n4.png" width="85%" height="auto"/>
+ 										<div class="bmhaaa">
+ 											¥ 5.9
+ 										</div>
+ 									</div>
+ 									<div class="intro">
+ 										<a href="#" class="wa_se">
+ 										IKEA| 查尔姆削皮刀
+ 										</a>
+ 									</div>
+ 								</div>
+ 								<div class="items" style="margin-left: 2%;margin-right: 2%;">
+ 									<div class="haaa">
+ 											<img src="img/n5.png" width="85%" height="auto"/>
+ 										<div class="bmhaaa">
+ 											¥ 7.9
+ 											<span class="smaller">
+ 												/3件
+ 											</span>
+ 										</div>
+ 									</div>
+ 									<div class="intro">
+ 										<a href="#" class="wa_se">
+ 										IKEA| 普塔透明食物盒
+ 										</a>
+ 									</div>
+ 								</div>
+ 								<div class="items">
+ 									<div class="haaa">
+ 											<img src="img/n6.png" width="85%" height="auto"/>
+ 										<div class="bmhaaa">
+ 											¥ 9.9
+ 											<span class="smaller">
+ 												/30个
+ 											</span>
+ 											
+ 										</div>
+ 									</div>
+ 									<div class="intro" style="margin-left: -8vw;">
+ 										<a href="#" class="wa_se">
+ 										IKEA| 贝瓦拉封口夹 30件套
+ 										</a>
+ 									</div>
+ 								</div>
+ 							</div>
+ 						</div>
+ 						<div class="mi_cat1">
+ 							<div class="mi_sub_cat1">
+ 								<div class="subb">
+ 									<div style="width: 10%;height: 3vw;float: left;">
+ 										
+ 									</div>
+ 									<a href="#" class="wa_se">
+ 									居家必备
+ 									</a>
+ 									<div class="more">
+ 										<a href="#" class="wa_se">
+ 											更多 >>
+ 										</a>
+ 									</div>
+ 								</div>
+ 								<div class="subs">
+ 									<a href="#" class="wa_se">
+ 									/为家注入新活力/
+ 									</a>
+ 								</div>
+ 							</div>
+ 							<div class="mi_sub_cat2">
+ 								<div class="items">
+ 									<div class="haaa">
+ 											<img src="img/n7.png" width="85%" height="auto"/>
+ 										<div class="bmhaaa">
+ 											¥ 19
+ 										</div>
+ 									</div>
+ 									<div class="intro">
+ 										<a href="#" class="wa_se">
+ 										IKEA| 夫伦加餐具滤干架
+ 										</a>
+ 									</div>
+ 								</div>
+ 								<div class="items" style="margin-left: 2%;margin-right: 2%;">
+ 									<div class="haaa">
+ 											<img src="img/n8.png" width="85%" height="auto"/>
+ 										<div class="bmhaaa">
+ 											¥ 19.9
+ 										</div>
+ 									</div>
+ 									<div class="intro" style="margin-left: -11vw;">
+ 										<a href="#" class="wa_se">
+ 										IKEA| 拉格瓦工作灯
+ 										</a>
+ 									</div>
+ 								</div>
+ 								<div class="items">
+ 									<a href="product.html" style="text-decoration: none;color: black;" >
+ 										<div class="haaa">
+ 											<img src="img/n9.png" width="85%" height="auto"/>
+ 										<div class="bmhaaa">
+ 											¥ 39
+ 										</div>
+ 									</div>
+ 									
+ 										<div class="intro" style="margin-left: -13vw;">
+ 											<a href="#" class="wa_se">
+ 											IKEA| 拉克边桌
+ 											</a>
+ 										</div>
+ 									</a>
+ 								</div>
+ 							</div>
+ 						</div>
+ 					</div>
+ 				</div>
+ 				<div class="iright">
+ 					
+ 				</div>
+ 			</div>
+ 			
+ 			<div class="footer">
+ 				<div class="footer1">
+ 					2019宜家家居指南&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用条款
+ 				</div>
+ 				<div class="footer1" style="height: 4.5vw;line-height: 4.5vw;border-top: 2px solid white;border-bottom: 2px solid white;">
+ 					隐私与个人信息保护政策&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退换货政策&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;店铺合作伙伴
+ 				</div>
+ 				<div class="footer1" style="height: 6;line-height: 6vw;">
+ 					沪ICP备17055232号-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;© Inter IKEA Systems B.V. 1999 - 2019
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</body>
+ </html>
